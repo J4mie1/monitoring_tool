@@ -3,6 +3,9 @@ print("Content-Type: text/html; charset=utf-8\n")
 
 from lib import classes
 
+debuglijstje = []
+debuglijstje.append(__file__ + " gestart...")
+
 # settings
 host                = '192.168.34.183'
 port                = 8888
@@ -14,6 +17,7 @@ locatie             = "/Applications/XAMPP/xamppfiles/htdocs/monitoringtool/"
 locatie_grafieken   = "grafieken/" # met slash
 pad_naar_csv        = "metingen.csv"
 pad_naar_database   = "lib/monitoringtool.sqlite"
+logfile             = "log/SV02.txt"
 
 agent = classes.Agent(host, port, ww, OS, classes.functions.geefDatum(), locatie, locatie_grafieken, pad_naar_database)
 
@@ -37,6 +41,7 @@ if OS == "W" or OS == "L":
                 </ul>
             </div>
         </div>""")
+        debuglijstje.append("Error: kan niet verbinden naar agent " + host + str(port) + " (code 1)" + "\n")
 
     elif agent_connect == 2:
         print("""
@@ -45,6 +50,7 @@ if OS == "W" or OS == "L":
                 Error: Host """ + host + """ kon niet worden benaderd, controleer het IP-adres
             </div>
         </div>""")
+        debuglijstje.append("Error: kan niet verbinden naar agent " + host + str(port) + " (code 2)" + "\n")
 
     else:
         counters = [agent.geefHostname(),           #0
@@ -63,6 +69,7 @@ if OS == "W" or OS == "L":
                     agent.geefUCapacity(),          #13
                     agent.geefUMemory()             #14
                     ]
+        debuglijstje.append("Verbinding gemaakt met agent " + host + str(port) +", counters succesvol opgehaald" + "\n")
 
         if OS == "W":
                     counters.append(agent.geefRunningServices())
@@ -70,6 +77,7 @@ if OS == "W" or OS == "L":
                     counters.append(agent.geefTotalServices())
 
         agent.verlaatSessie()
+        debuglijstje.append("Verbinding met agent " + host + str(port) + " weer verbroken" + "\n")
         host_id = agent.genereerHostID()
 
         if genereer_grafieken == 1 and csv == 1:
@@ -80,15 +88,18 @@ if OS == "W" or OS == "L":
                             agent.genereerGrafiek(3, counters[14], classes.functions.geefTijdInDecimalen()),
                             agent.bewaarInCsv(pad_naar_csv)
                             ]
+            debuglijstje.append("Grafieken gegenereerd", "Processorbelasting, datagebruik en geheugengebruik counters toegevoegd aan " + pad_naar_csv + "\n")
 
         elif genereer_grafieken == 1 and csv == 0:
             grafieken = [   agent.genereerGrafiek(1, counters[5][1], classes.functions.geefTijdInDecimalen()),
                             agent.genereerGrafiek(2, counters[13], classes.functions.geefTijdInDecimalen()),
                             agent.genereerGrafiek(3, counters[14], classes.functions.geefTijdInDecimalen())
                             ]
+            debuglijstje.append("Grafieken gegenereerd" + "\n")
 
         elif genereer_grafieken == 0 and csv == 1:
             agent.bewaarAlleenInCsv(counters[5][1], counters[13], counters[14], str(classes.functions.geefTijdInDecimalen(), pad_naar_csv))
+            debuglijstje.append("Processorbelasting, datagebruik en geheugengebruik counters toegevoegd aan " + pad_naar_csv + "\n")
 
         print("""
             <div class="row small">
@@ -264,7 +275,11 @@ else:
             <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
                 <div class="alert alert-danger">Error: Optie "OS" mag alleen "W" of "L" bevatten</div>
             </div>""")
+    debuglijstje.append("Error: optie 'OS' mag alleen 'W' of 'L' zijn" + "\n")
 
 from lib.layout import footer
 
 classes.functions.uploadNaarGitHub(__file__)
+print(debuglijstje)
+agent.schrijfNaarLogFile(logfile, debuglijstje)
+
