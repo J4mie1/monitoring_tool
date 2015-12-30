@@ -61,9 +61,9 @@ class Agent:
         return 0
 
     def geefHostname(self):
-        functions.verstuurData(slf.hostname)
+        functions.verstuurData(self.hostname)
         self.hostname = functions.ontvangData()
-        return self.hostname
+        return self.hostnme
 
     def genereerHostID(self):
         # controleer of de opgegeven host al bestaat in de tabel, zo niet dan toevoegen. onthoud vervolgens 't host_id
