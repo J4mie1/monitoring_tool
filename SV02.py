@@ -2,7 +2,7 @@
 print("Content-Type: text/html; charset=utf-8\n")
 
 from lib import classes
-from subprocess import call
+from subprocess import call, Popen, PIPE
 import subprocess
 import os
 import git
@@ -294,7 +294,9 @@ call("git push -u origin master", stdout=devnull, stderr=devnull, shell=True)
 """
 
 #call(['git', 'init', ' --exec-path=/usr/local/git/bin/'])
-print (call(['/usr/local/git/bin/git', "init", locatie]))
+p = Popen(['/usr/local/git/bin/git', "init"], stdout=PIPE)
+print (p.communicate())
+
 print (call(['/usr/local/git/bin/git', "add", str(filenaam)], stdout=devnull, stderr=devnull))
 print (call(['/usr/local/git/bin/git', "commit", "-m" ,'commit'], stdout=devnull, stderr=devnull))
 print (call(['/usr/local/git/bin/git', "pull", "origin", "master"], stdout=devnull, stderr=devnull))
