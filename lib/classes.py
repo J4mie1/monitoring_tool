@@ -61,7 +61,7 @@ class Agent:
         return 0
 
     def geefHostname(self):
-        functions.verstuurData(self.hostname)
+        functions.verstuurData(slf.hostname)
         self.hostname = functions.ontvangData()
         return self.hostname
 
