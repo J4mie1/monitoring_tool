@@ -282,7 +282,7 @@ from lib.layout import footer
 filenaam = __file__
 
 
-a = subprocess.call('git init', shell=True)
+#subprocess.call('git init', shell=True)
 subprocess.call("git add " + str(filenaam), shell=True)
 subprocess.call("git commit -m 'commit'", shell=True)
 subprocess.call("git pull origin master", shell=True)
