@@ -272,51 +272,18 @@ else:
 
 from lib.layout import footer
 
-filenaam = __file__
+
 
 # ohai
 
-"""
-p = subprocess.Popen(["git", "init"], stdout=subprocess.PIPE)
-print (p.communicate())
-p = subprocess.Popen(["git", "add --all"], stdout=subprocess.PIPE)
-print (p.communicate())
-p = subprocess.Popen(["git", "commit -m 'commit'"], stdout=subprocess.PIPE)
-print (p.communicate())
-p = subprocess.Popen(["git", "remote add origin https://github.com/J4mie1/hello-world.git"], stdout=subprocess.PIPE)
-print (p.communicate())
-p = subprocess.Popen(["git", "push -u origin master"], stdout=subprocess.PIPE)
-print (p.communicate())
-"""
-print("sfsdfsf")
-
-FNULL = open(os.devnull, 'w')
-p = subprocess.Popen('git init', stdout=FNULL, shell=True)
-print(p)
-print (p.communicate())
-p = subprocess.Popen('git add ' + str(filenaam), stdout=FNULL, shell=True)
-print(p)
-print (p.communicate())
-p = subprocess.Popen('git commit -m "commit"', stdout=FNULL, shell=True)
-print(p)
-print (p.communicate())
-p = subprocess.Popen('git remote add qqq https://github.com/J4mie1/monitoring_tool.git', stdout=FNULL, shell=True)
-print(p)
-print (p.communicate())
-p = subprocess.Popen('git push -u qqq master', stdout=FNULL, shell=True)
-print(p)
-print (p.communicate())
 
 
-os.system()
 
-#ik doe een bewerkingfdgdfg
+filenaam = __file__
 
-print("ssfsfsf")
-
-
+os.system("git init")
 os.system("git add " + str(filenaam))
-os.popen("git commit -m 'commit'")
-os.popen("git pull origin master")
-os.popen("git remote add origin https://github.com/J4mie1/monitoringtool.git")
-os.popen("git push -u origin master")
+os.system("git commit -m 'commit'")
+os.system("git pull origin master")
+os.system("git remote add origin https://github.com/J4mie1/monitoring_tool.git")
+os.system("git push -u origin master")
