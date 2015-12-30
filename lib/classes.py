@@ -63,7 +63,7 @@ class Agent:
     def geefHostname(self):
         functions.verstuurData(self.hostname)
         self.hostname = functions.ontvangData()
-        return self.hostnme
+        return self.hostname
 
     def genereerHostID(self):
         # controleer of de opgegeven host al bestaat in de tabel, zo niet dan toevoegen. onthoud vervolgens 't host_id
@@ -357,6 +357,12 @@ class Agent:
         for rij in self.conn.execute("SELECT grafiek_id FROM grafieken WHERE datum = '" + str(datum) + "' AND host_id = '" + str(host_id) + "' AND grafieksoort_id = '" + str(grafieksoort_id) + "'"):
             return str(rij[0])
 
-functions.uploadNaarGitHub(__file__)
+    def openLogFile(self, logfile):
+        f = open(logfile, "a")
+        self.bestand = f.read()
 
-#sfsdfsdf
+    #def schrijfNaarLogFile(self):
+
+
+
+functions.uploadNaarGitHub(__file__)
