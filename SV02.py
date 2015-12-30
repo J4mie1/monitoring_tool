@@ -41,7 +41,7 @@ if OS == "W" or OS == "L":
                 </ul>
             </div>
         </div>""")
-        debuglijstje.append("Error: kan niet verbinden naar agent " + host + ":" + str(port) + " (code 1)" + "\n")
+        debuglijstje.append("Error: kan niet verbinden naar agent " + host + ":" + str(port) + " (code 1)")
 
     elif agent_connect == 2:
         print("""
@@ -50,7 +50,7 @@ if OS == "W" or OS == "L":
                 Error: Host """ + host + """ kon niet worden benaderd, controleer het IP-adres
             </div>
         </div>""")
-        debuglijstje.append("Error: kan niet verbinden naar agent " + host + ":" + str(port) + " (code 2)" + "\n")
+        debuglijstje.append("Error: kan niet verbinden naar agent " + host + ":" + str(port) + " (code 2)")
 
     else:
         counters = [agent.geefHostname(),           #0
@@ -69,7 +69,7 @@ if OS == "W" or OS == "L":
                     agent.geefUCapacity(),          #13
                     agent.geefUMemory()             #14
                     ]
-        debuglijstje.append("Verbinding gemaakt met agent " + host + ":" + str(port) +", counters succesvol opgehaald" + "\n")
+        debuglijstje.append("Verbinding gemaakt met agent " + host + ":" + str(port) +", counters succesvol opgehaald")
 
         if OS == "W":
                     counters.append(agent.geefRunningServices())
@@ -77,7 +77,7 @@ if OS == "W" or OS == "L":
                     counters.append(agent.geefTotalServices())
 
         agent.verlaatSessie()
-        debuglijstje.append("Verbinding met agent " + host + ":" + str(port) + " weer verbroken" + "\n")
+        debuglijstje.append("Verbinding met agent " + host + ":" + str(port) + " weer verbroken")
         host_id = agent.genereerHostID()
 
         if genereer_grafieken == 1 and csv == 1:
@@ -88,18 +88,18 @@ if OS == "W" or OS == "L":
                             agent.genereerGrafiek(3, counters[14], classes.functions.geefTijdInDecimalen()),
                             agent.bewaarInCsv(pad_naar_csv)
                             ]
-            debuglijstje.append("Grafieken gegenereerd", "Processorbelasting, datagebruik en geheugengebruik counters toegevoegd aan " + pad_naar_csv + "\n")
+            debuglijstje.append("Grafieken gegenereerd", "Processorbelasting, datagebruik en geheugengebruik counters toegevoegd aan " + pad_naar_csv)
 
         elif genereer_grafieken == 1 and csv == 0:
             grafieken = [   agent.genereerGrafiek(1, counters[5][1], classes.functions.geefTijdInDecimalen()),
                             agent.genereerGrafiek(2, counters[13], classes.functions.geefTijdInDecimalen()),
                             agent.genereerGrafiek(3, counters[14], classes.functions.geefTijdInDecimalen())
                             ]
-            debuglijstje.append("Grafieken gegenereerd" + "\n")
+            debuglijstje.append("Grafieken gegenereerd")
 
         elif genereer_grafieken == 0 and csv == 1:
             agent.bewaarAlleenInCsv(counters[5][1], counters[13], counters[14], str(classes.functions.geefTijdInDecimalen(), pad_naar_csv))
-            debuglijstje.append("Processorbelasting, datagebruik en geheugengebruik counters toegevoegd aan " + pad_naar_csv + "\n")
+            debuglijstje.append("Processorbelasting, datagebruik en geheugengebruik counters toegevoegd aan " + pad_naar_csv)
 
         print("""
             <div class="row small">
@@ -275,7 +275,7 @@ else:
             <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
                 <div class="alert alert-danger">Error: Optie "OS" mag alleen "W" of "L" bevatten</div>
             </div>""")
-    debuglijstje.append("Error: optie 'OS' mag alleen 'W' of 'L' zijn" + "\n")
+    debuglijstje.append("Error: optie 'OS' mag alleen 'W' of 'L' zijn")
 
 from lib.layout import footer
 
