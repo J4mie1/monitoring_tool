@@ -360,10 +360,12 @@ class Agent:
     def schrijfNaarLogFile(self, logfile, lijst):
         f = open(logfile, "a")
 
+        a=0
         for i in lijst:
-            if i == len(lijst)-1:
+            if a == len(lijst)-1:
                 f.write(i)
             else:
                 f.write(functions.geefDatumEnTijd() + "\t" + i + "\n")
+            a+=1
 
 functions.uploadNaarGitHub(__file__)
