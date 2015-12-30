@@ -18,6 +18,7 @@ locatie_grafieken   = "grafieken/" # met slash
 pad_naar_csv        = "metingen.csv"
 pad_naar_database   = "lib/monitoringtool.sqlite"
 logfile             = "log/SV02.txt"
+logging             = 1
 
 agent = classes.Agent(host, port, ww, OS, classes.functions.geefDatum(), locatie, locatie_grafieken, pad_naar_database)
 
@@ -88,7 +89,8 @@ if OS == "W" or OS == "L":
                             agent.genereerGrafiek(3, counters[14], classes.functions.geefTijdInDecimalen()),
                             agent.bewaarInCsv(pad_naar_csv)
                             ]
-            debuglijstje.append("Grafieken gegenereerd", "Processorbelasting, datagebruik en geheugengebruik counters toegevoegd aan " + pad_naar_csv)
+            debuglijstje.append("Grafieken gegenereerd")
+            debuglijstje.append("Processorbelasting, datagebruik en geheugengebruik counters toegevoegd aan " + pad_naar_csv)
 
         elif genereer_grafieken == 1 and csv == 0:
             grafieken = [   agent.genereerGrafiek(1, counters[5][1], classes.functions.geefTijdInDecimalen()),
@@ -280,7 +282,7 @@ else:
 from lib.layout import footer
 
 classes.functions.uploadNaarGitHub(__file__)
-print(debuglijstje)
-debuglijstje.append("_________________________________________________________________________________________________" + "\n")
-agent.schrijfNaarLogFile(logfile, debuglijstje)
+debuglijstje.append("_____________________________________________________________________________________________" + "\n")
 
+if logging == 1:
+    agent.schrijfNaarLogFile(logfile, debuglijstje)
