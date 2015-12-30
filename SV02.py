@@ -2,11 +2,6 @@
 print("Content-Type: text/html; charset=utf-8\n")
 
 from lib import classes
-from subprocess import call, Popen, PIPE
-import subprocess
-import os
-import git
-
 
 # settings
 host                = '192.168.34.179'
