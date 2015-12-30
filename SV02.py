@@ -220,8 +220,7 @@ if OS == "W" or OS == "L":
             grafiek_id = agent.geefGrafiekID(i[0], 1, host_id)
             print("""
                             <li role='presentation'><a role='menuitem' tabindex='-1' data-toggle='modal' data-target='#""" + grafiek_id + """'>""" + i[0] + """</a></li>""")
-            value = (grafiek_id, i[1], "Gemeten processorbelasting")
-            alle_grafieken.append(value)
+            alle_grafieken.append((grafiek_id, i[1], "Gemeten processorbelasting"))
 
         print("""
                             <li role="presentation" class="divider"></li>
@@ -232,10 +231,9 @@ if OS == "W" or OS == "L":
             print("""
                             <li role='presentation'><a role='menuitem' tabindex='-1' data-toggle='modal' data-target='#""" + grafiek_id + """'>""" + i[0] + """</a></li>""")
             if OS == "W":
-                value = (grafiek_id, i[1], "Datagebruik C:")
+                alle_grafieken.append((grafiek_id, i[1], "Datagebruik C:"))
             else:
-                value = (grafiek_id, i[1], "Datagebruik /dev/sda1")
-            alle_grafieken.append(value)
+                alle_grafieken.append((grafiek_id, i[1], "Datagebruik /dev/sda1"))
 
         print("""
                             <li role="presentation" class="divider"></li>
@@ -245,8 +243,7 @@ if OS == "W" or OS == "L":
             grafiek_id = agent.geefGrafiekID(i[0], 3, host_id)
             print("""
                             <li role='presentation'><a role='menuitem' tabindex='-1' data-toggle='modal' data-target='#""" + grafiek_id + """'>""" + i[0] + """</a></li>""")
-            value = (grafiek_id, i[1], "Geheugengebruik")
-            alle_grafieken.append(value)
+            alle_grafieken.append((grafiek_id, i[1], "Geheugengebruik"))
 
         print("""
                         </ul>
