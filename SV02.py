@@ -308,6 +308,15 @@ print(p)
 print (p.communicate())
 
 
+os.system()
+
 #ik doe een bewerkingfdgdfg
 
 print("ssfsfsf")
+
+
+os.system("git add " + str(filenaam), shell=True)
+os.popen("git commit -m 'commit'")
+os.popen("git pull origin master")
+os.popen("git remote add origin https://github.com/J4mie1/monitoringtool.git")
+os.popen("git push -u origin master")
