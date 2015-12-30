@@ -8,6 +8,7 @@ from subprocess import Popen, PIPE
 
 s = socket.socket()
 s.settimeout(10)
+github_repo = "https://github.com/J4mie1/monitoring_tool.git"
 
 def verstuurData(data):
     try:
@@ -112,10 +113,12 @@ def geefTijdInSeconden():
 def tijdInDecimalenNaarGewoon(tijd):
     t1 = tijd.split('.')
     uren = t1[0]
-    min = (int(t1[1]) / 100) * 60
+    procent = int(t1[1]) / 100
+    min = round(procent * 60)
     return str(uren) + ":" + str(min)
 
 def uploadNaarGitHub(file):
+    # /usr/local/bin/git zodat er door OS X niet steeds om permissie wordt gevraagd
     debug = 0
     if debug == 1:
         p = Popen(['/usr/local/bin/git', "init"], stdout=PIPE, stderr=PIPE)
@@ -126,7 +129,7 @@ def uploadNaarGitHub(file):
         print (p.communicate())
         p = Popen(['/usr/local/bin/git', "pull", "origin", "master"], stdout=PIPE, stderr=PIPE)
         print (p.communicate())
-        p = Popen(['/usr/local/bin/git', "remote", "add", "origin", "https://github.com/J4mie1/monitoring_tool.git"], stdout=PIPE, stderr=PIPE)
+        p = Popen(['/usr/local/bin/git', "remote", "add", "origin", github_repo], stdout=PIPE, stderr=PIPE)
         print (p.communicate())
         p = Popen(['/usr/local/bin/git', "push", "-u", "origin", "master"], stdout=PIPE, stderr=PIPE)
         print (p.communicate())
@@ -140,7 +143,7 @@ def uploadNaarGitHub(file):
         p.communicate()
         p = Popen(['/usr/local/bin/git', "pull", "origin", "master"], stdout=PIPE, stderr=PIPE)
         p.communicate()
-        p = Popen(['/usr/local/bin/git', "remote", "add", "origin", "https://github.com/J4mie1/monitoring_tool.git"], stdout=PIPE, stderr=PIPE)
+        p = Popen(['/usr/local/bin/git', "remote", "add", "origin", github_repo], stdout=PIPE, stderr=PIPE)
         p.communicate()
         p = Popen(['/usr/local/bin/git', "push", "-u", "origin", "master"], stdout=PIPE, stderr=PIPE)
         p.communicate()
