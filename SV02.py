@@ -4,7 +4,7 @@ print("Content-Type: text/html; charset=utf-8\n")
 from lib import classes
 
 # settings
-host                = '192.168.34.179'
+host                = '192.168.34.183'
 port                = 8888
 ww                  = "jamie"
 OS                  = "L"   # kies W of L
