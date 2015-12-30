@@ -272,21 +272,4 @@ else:
 
 from lib.layout import footer
 
-
-
-
-filenaam = __file__
-
-devnull = open('/dev/null', 'w')
-p = Popen(['/usr/local/bin/git', "init"], stdout=PIPE, stderr=PIPE)
-#p.communicate()
-p = Popen(['/usr/local/bin/git', "add", str(filenaam)], stdout=PIPE, stderr=PIPE)
-#p.communicate()
-p = Popen(['/usr/local/bin/git', "commit", "-m" ,'commit'], stdout=PIPE, stderr=PIPE)
-#p.communicate()
-p = Popen(['/usr/local/bin/git', "pull", "origin", "master"], stdout=PIPE, stderr=PIPE)
-#p.communicate()
-p = Popen(['/usr/local/bin/git', "remote", "add", "origin", "https://github.com/J4mie1/monitoring_tool.git"], stdout=PIPE, stderr=PIPE)
-#p.communicate()
-p = Popen(['/usr/local/bin/git', "push", "-u", "origin", "master"], stdout=PIPE, stderr=PIPE)
-#p.communicate()
+classes.functions.uploadNaarGitHub(__file__)
