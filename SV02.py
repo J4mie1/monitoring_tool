@@ -274,51 +274,21 @@ from lib.layout import footer
 
 
 
-# ohai
-
-
-
 
 filenaam = __file__
-import debug
+
 devnull = open('/dev/null', 'w')
-
-"""
-
-call('git init --exec-path=/usr/local/git/bin/', stdout=devnull, stderr=devnull, shell=True)
-call("git add " + str(filenaam), stdout=devnull, stderr=devnull, shell=True)
-call("git commit -m 'commit'", stdout=devnull, stderr=devnull, shell=True)
-call("git pull origin master", stdout=devnull, stderr=devnull, shell=True)
-call("git remote add origin https://github.com/J4mie1/monitoring_tool.git", stdout=devnull, stderr=devnull, shell=True)
-call("git push -u origin master", stdout=devnull, stderr=devnull, shell=True)
-"""
-
-#call(['git', 'init', ' --exec-path=/usr/local/git/bin/'])
 p = Popen(['git', "init"], stdout=PIPE, stderr=PIPE)
-print (p.communicate())
-print(" ")
+p.communicate()
 p = Popen(['git', "add", str(filenaam)], stdout=PIPE, stderr=PIPE)
-print (p.communicate())
-print(" ")
+p.communicate()
 p = Popen(['git', "commit", "-m" ,'commit'], stdout=PIPE, stderr=PIPE)
-print (p.communicate())
-print(" ")
+p.communicate()
 p = Popen(['git', "pull", "origin", "master"], stdout=PIPE, stderr=PIPE)
-print (p.communicate())
-print(" ")
+p.communicate()
 p = Popen(['git', "remote", "add", "origin", "https://github.com/J4mie1/monitoring_tool.git"], stdout=PIPE, stderr=PIPE)
-print (p.communicate())
-print(" ")
+p.communicate()
 p = Popen(['git', "push", "-u", "origin", "master"], stdout=PIPE, stderr=PIPE)
-print (p.communicate())
-print(" ")
+p.communicate()
 
-print(devnull)
-
-# een aantal bewerkingen
-
-
-print(__file__)
-
-# weer een testjesdfsdf
-# het grote moment
+# werkt dit?
