@@ -122,7 +122,7 @@ def tijdInDecimalenNaarGewoon(tijd):
     except IndexError:
         return str(uren) + ":00"
 
-print(tijdInDecimalenNaarGewoon("11.66"))
+print(tijdInDecimalenNaarGewoon("11.89"))
 
 def uploadNaarGitHub(file):
     # /usr/local/bin/git zodat er door OS X niet steeds om permissie wordt gevraagd
