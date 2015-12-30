@@ -280,7 +280,7 @@ from lib.layout import footer
 
 
 filenaam = __file__
-
+import debug
 devnull = open('/dev/null', 'w')
 
 """
@@ -321,3 +321,4 @@ print(devnull)
 print(__file__)
 
 # weer een testje
+
