@@ -293,7 +293,10 @@ FNULL = open(os.devnull, 'w')
 subprocess.call('git init', stdout=FNULL, shell=True)
 subprocess.call('git add ' + str(filenaam), stdout=FNULL, shell=True)
 subprocess.call('git commit -m "commit"', stdout=FNULL, shell=True)
-subprocess.call('git remote add origin https://github.com/J4mie1/monitoring_tool.git', stdout=FNULL, shell=True)
+try:
+    subprocess.call('git remote add origin https://github.com/J4mie1/monitoring_tool.git', stdout=FNULL, shell=True)
+except OSError:
+    print("oei fataal")
 subprocess.call('git push -u origin master', stdout=FNULL, shell=True)
 
 #ik doe een bewerking
