@@ -113,7 +113,7 @@ def geefTijdInSeconden():
 def tijdInDecimalenNaarGewoon(tijd):
     t1 = tijd.split('.')
     uren = t1[0]
-    min = (int(t1[1]) / 100) * 60
+    min = (round(int(t1[1]) / 100)) * 60
     return str(uren) + ":" + str(min)
 
 print(tijdInDecimalenNaarGewoon("1.66"))
