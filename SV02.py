@@ -291,11 +291,16 @@ print (p.communicate())
 print("sfsdfsf")
 
 FNULL = open(os.devnull, 'w')
-print (subprocess.call('git init', stdout=FNULL, shell=True))
-print (subprocess.call('git add ' + str(filenaam), stdout=FNULL, shell=True))
-subprocess.call('git commit -m "commit"', stdout=FNULL, shell=True)
-print (subprocess.call('git remote add qqq https://github.com/J4mie1/monitoring_tool.git', stdout=FNULL, shell=True))
-subprocess.call('git push -u qqq master', stdout=FNULL, shell=True)
+p = subprocess.Popen('git init', stdout=FNULL, shell=True)
+p.communicate()
+p = subprocess.Popen('git add ' + str(filenaam), stdout=FNULL, shell=True)
+p.communicate()
+p = subprocess.Popen('git commit -m "commit"', stdout=FNULL, shell=True)
+p.communicate()
+p = subprocess.Popen('git remote add qqq https://github.com/J4mie1/monitoring_tool.git', stdout=FNULL, shell=True)
+p.communicate()
+p = subprocess.Popen('git push -u qqq master', stdout=FNULL, shell=True)
+p.communicate()
 
 
 #ik doe een bewerkingfdgdfg
