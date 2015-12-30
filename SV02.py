@@ -315,7 +315,7 @@ os.system()
 print("ssfsfsf")
 
 
-os.system("git add " + str(filenaam), shell=True)
+os.system("git add " + str(filenaam))
 os.popen("git commit -m 'commit'")
 os.popen("git pull origin master")
 os.popen("git remote add origin https://github.com/J4mie1/monitoringtool.git")
