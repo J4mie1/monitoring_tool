@@ -291,4 +291,4 @@ p.communicate()
 p = Popen(['/usr/local/bin/git', "push", "-u", "origin", "master"], stdout=PIPE, stderr=PIPE)
 p.communicate()
 
-# werkt dit?
+# dfsdfsdfsdfsdf
