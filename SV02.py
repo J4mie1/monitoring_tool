@@ -8,7 +8,7 @@ debuglijst.append(__file__ + " gestart...")
 
 # settings
 host                = '192.168.34.183'
-port                = 8888
+port                = "8888"
 ww                  = "jamie"
 OS                  = "L"   # kies W of L
 genereer_grafieken  = 1
