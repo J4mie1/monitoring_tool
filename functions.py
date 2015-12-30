@@ -8,6 +8,7 @@ from subprocess import Popen, PIPE
 
 s = socket.socket()
 s.settimeout(10)
+github_repo = "https://github.com/J4mie1/monitoring_tool.git"
 
 def verstuurData(data):
     try:
@@ -115,18 +116,40 @@ def tijdInDecimalenNaarGewoon(tijd):
     min = (int(t1[1]) / 100) * 60
     return str(uren) + ":" + str(min)
 
+print(tijdInDecimalenNaarGewoon("1.66"))
+
 def uploadNaarGitHub(file):
-    filenaam = __file__
-    devnull = open('/dev/null', 'w')
-    p = Popen(['/usr/local/bin/git', "init"], stdout=PIPE, stderr=PIPE)
-    p.communicate()
-    p = Popen(['/usr/local/bin/git', "add", str(filenaam)], stdout=PIPE, stderr=PIPE)
-    p.communicate()
-    p = Popen(['/usr/local/bin/git', "commit", "-m" ,'commit'], stdout=PIPE, stderr=PIPE)
-    p.communicate()
-    p = Popen(['/usr/local/bin/git', "pull", "origin", "master"], stdout=PIPE, stderr=PIPE)
-    p.communicate()
-    p = Popen(['/usr/local/bin/git', "remote", "add", "origin", "https://github.com/J4mie1/monitoring_tool.git"], stdout=PIPE, stderr=PIPE)
-    p.communicate()
-    p = Popen(['/usr/local/bin/git', "push", "-u", "origin", "master"], stdout=PIPE, stderr=PIPE)
-    p.communicate()
+    # /usr/local/bin/git zodat er door OS X niet steeds om permissie wordt gevraagd
+    debug = 0
+    if debug == 1:
+        p = Popen(['/usr/local/bin/git', "init"], stdout=PIPE, stderr=PIPE)
+        print (p.communicate())
+        p = Popen(['/usr/local/bin/git', "add", str(file)], stdout=PIPE, stderr=PIPE)
+        print (p.communicate())
+        p = Popen(['/usr/local/bin/git', "commit", "-m" ,'commit'], stdout=PIPE, stderr=PIPE)
+        print (p.communicate())
+        p = Popen(['/usr/local/bin/git', "pull", "origin", "master"], stdout=PIPE, stderr=PIPE)
+        print (p.communicate())
+        p = Popen(['/usr/local/bin/git', "remote", "add", "origin", github_repo], stdout=PIPE, stderr=PIPE)
+        print (p.communicate())
+        p = Popen(['/usr/local/bin/git', "push", "-u", "origin", "master"], stdout=PIPE, stderr=PIPE)
+        print (p.communicate())
+
+    else:
+        p = Popen(['/usr/local/bin/git', "init"], stdout=PIPE, stderr=PIPE)
+        p.communicate()
+        p = Popen(['/usr/local/bin/git', "add", str(file)], stdout=PIPE, stderr=PIPE)
+        p.communicate()
+        p = Popen(['/usr/local/bin/git', "commit", "-m" ,'commit'], stdout=PIPE, stderr=PIPE)
+        p.communicate()
+        p = Popen(['/usr/local/bin/git', "pull", "origin", "master"], stdout=PIPE, stderr=PIPE)
+        p.communicate()
+        p = Popen(['/usr/local/bin/git', "remote", "add", "origin", github_repo], stdout=PIPE, stderr=PIPE)
+        p.communicate()
+        p = Popen(['/usr/local/bin/git', "push", "-u", "origin", "master"], stdout=PIPE, stderr=PIPE)
+        p.communicate()
+
+def geefDatumEnTijd():
+    return str(datetime.now())[0:19]
+
+uploadNaarGitHub(__file__)
