@@ -145,4 +145,7 @@ def uploadNaarGitHub(file):
         p = Popen(['/usr/local/bin/git', "push", "-u", "origin", "master"], stdout=PIPE, stderr=PIPE)
         p.communicate()
 
+def geefDatumEnTijd():
+    str(datetime.datetime.now())[0:19]
+
 uploadNaarGitHub(__file__)
