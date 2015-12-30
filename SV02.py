@@ -303,7 +303,7 @@ call(['/usr/local/git/bin/git', "push", "-u", "origin", "master"], stdout=devnul
 
 
 
-#call(['git', 'add', str(filenaam)])
+# een aantal bewerkingen
 
 
 
