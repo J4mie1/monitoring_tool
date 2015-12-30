@@ -308,6 +308,6 @@ print(devnull)
 # een aantal bewerkingen
 
 
-
+print(__file__)
 
 # weer een testje
