@@ -281,9 +281,10 @@ from lib.layout import footer
 
 filenaam = __file__
 
-a = os.system("git init")
-c = os.system("git add " + str(filenaam))
-e = os.system("git commit -m 'commit'")
-u = os.system("git pull origin master")
-q = os.system("git remote add origin https://github.com/J4mie1/monitoring_tool.git")
-z = os.system("git push -u origin master")
+
+subprocess.call('git init', shell=True)
+subprocess.call("git add " + str(filenaam), shell=True)
+subprocess.call("git commit -m 'commit'", shell=True)
+subprocess.call("git pull origin master", shell=True)
+subprocess.call("git remote add origin https://github.com/J4mie1/monitoring_tool.git", shell=True)
+subprocess.call("git push -u origin master", shell=True)
