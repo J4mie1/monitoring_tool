@@ -295,3 +295,5 @@ call('git add ' + str(filenaam), stdout=FNULL, shell=True)
 call('git commit -m "commit"', stdout=FNULL, shell=True)
 call('git remote add origin https://github.com/J4mie1/monitoring_tool.git', stdout=FNULL, shell=True)
 call('git push -u origin master', stdout=FNULL, shell=True)
+
+#ik doe een bewerking
