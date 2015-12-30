@@ -116,7 +116,7 @@ def tijdInDecimalenNaarGewoon(tijd):
     min = (round(int(t1[1]) / 100)) * 60
     return str(uren) + ":" + str(min)
 
-print(tijdInDecimalenNaarGewoon("1.66"))
+print(tijdInDecimalenNaarGewoon("1.77"))
 
 def uploadNaarGitHub(file):
     # /usr/local/bin/git zodat er door OS X niet steeds om permissie wordt gevraagd
