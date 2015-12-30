@@ -294,7 +294,7 @@ call("git push -u origin master", stdout=devnull, stderr=devnull, shell=True)
 """
 
 #call(['git', 'init', ' --exec-path=/usr/local/git/bin/'])
-p = Popen(['/usr/local/git/bin/git', "init"], stdout=PIPE)
+p = Popen(['/usr/local/git/bin/git', "init"], stdout=PIPE, stderr=PIPE)
 print (p.communicate())
 
 print (call(['/usr/local/git/bin/git', "add", str(filenaam)], stdout=devnull, stderr=devnull))
