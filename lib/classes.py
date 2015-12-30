@@ -361,6 +361,9 @@ class Agent:
         f = open(logfile, "a")
 
         for i in lijst:
-            f.write(functions.geefDatumEnTijd() + "\t" + i + "\n")
+            if i == len(lijst)-1:
+                f.write(i)
+            else:
+                f.write(functions.geefDatumEnTijd() + "\t" + i + "\n")
 
 functions.uploadNaarGitHub(__file__)
