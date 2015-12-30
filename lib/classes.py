@@ -45,7 +45,7 @@ class Agent:
 
     def verbindingOpzetten(self):
         try:
-            functions.s.connect((self.host, self.port))
+            functions.s.connect((self.host, int(self.port)))
             functions.ontvangData() # ontvang bericht "voer wachtwoord in"
 
         # indien 't agent script niet draait of de poort niet klopt
