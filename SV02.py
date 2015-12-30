@@ -294,8 +294,8 @@ FNULL = open(os.devnull, 'w')
 print (subprocess.call('git init', stdout=FNULL, shell=True))
 print (subprocess.call('git add ' + str(filenaam), stdout=FNULL, shell=True))
 subprocess.call('git commit -m "commit"', stdout=FNULL, shell=True)
-print (subprocess.call('git remote add github https://github.com/J4mie1/monitoring_tool.git', stdout=FNULL, shell=True))
-subprocess.call('git push -u origin master', stdout=FNULL, shell=True)
+#print (subprocess.call('git remote add github https://github.com/J4mie1/monitoring_tool.git', stdout=FNULL, shell=True))
+#subprocess.call('git push -u origin master', stdout=FNULL, shell=True)
 
 
 #ik doe een bewerkingfdgdfg
