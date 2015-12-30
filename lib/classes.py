@@ -20,7 +20,7 @@ class Agent:
         self.datum              = datum
         self.locatie            = locatie
         self.locatie_grafieken  = locatie_grafieken
-        self.conn = sqlite3.connect(conn)
+        self.conn               = sqlite3.connect(conn)
 
         # client commands
         self.hostname           = "hostname"
@@ -337,18 +337,16 @@ class Agent:
             for rij in self.conn.execute("SELECT datum, grafieksoort_id FROM grafieken WHERE host_id = '" + str(self.host_id) + "' ORDER BY datum DESC"):
                 datum_tekst = functions.datumNaarTekst(str(rij[0]))
                 if rij[1] == i:
+                    prefix = self.locatie_grafieken + self.hostname + "_" + str(rij[0])
                     if i == 1:
-                        path = self.locatie_grafieken + self.hostname + "_" + str(rij[0]) + "_processorbelasting.png"
-                        value = (datum_tekst, path)
-                        grafiek_items.append(value)
+                        path = prefix + "_processorbelasting.png"
+                        grafiek_items.append((datum_tekst, path))
                     elif i == 2:
-                        path = self.locatie_grafieken + self.hostname + "_" + str(rij[0]) + "_datagebruik.png"
-                        value = (datum_tekst, path)
-                        grafiek_items2.append(value)
+                        path = prefix + "_datagebruik.png"
+                        grafiek_items2.append((datum_tekst, path))
                     elif i == 3:
-                        path = self.locatie_grafieken + self.hostname + "_" + str(rij[0]) + "_geheugengebruik.png"
-                        value = (datum_tekst, path)
-                        grafiek_items3.append(value)
+                        path = prefix + "_geheugengebruik.png"
+                        grafiek_items3.append((datum_tekst, path))
 
         return grafiek_items, grafiek_items2, grafiek_items3
 
@@ -360,12 +358,10 @@ class Agent:
     def schrijfNaarLogFile(self, logfile, lijst):
         f = open(logfile, "a")
 
-        a=0
         for i in lijst:
-            if a == len(lijst)-1:
+            if i == lijst[-1]:
                 f.write(i)
             else:
                 f.write(functions.geefDatumEnTijd() + "\t" + i + "\n")
-            a+=1
 
 functions.uploadNaarGitHub(__file__)
