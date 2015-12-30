@@ -146,6 +146,6 @@ def uploadNaarGitHub(file):
         p.communicate()
 
 def geefDatumEnTijd():
-    str(datetime.datetime.now())[0:19]
+    return str(datetime.now())[0:19]
 
 uploadNaarGitHub(__file__)
