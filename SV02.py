@@ -294,14 +294,14 @@ call("git push -u origin master", stdout=devnull, stderr=devnull, shell=True)
 """
 
 #call(['git', 'init', ' --exec-path=/usr/local/git/bin/'])
-print (call(['/usr/local/git/bin/git', "init"]))
+print (call(['/usr/local/git/bin/git', "init", locatie]))
 print (call(['/usr/local/git/bin/git', "add", str(filenaam)], stdout=devnull, stderr=devnull))
 print (call(['/usr/local/git/bin/git', "commit", "-m" ,'commit'], stdout=devnull, stderr=devnull))
 print (call(['/usr/local/git/bin/git', "pull", "origin", "master"], stdout=devnull, stderr=devnull))
 print (call(['/usr/local/git/bin/git', "remote", "add", "origin", "https://github.com/J4mie1/monitoring_tool.git"], stdout=devnull, stderr=devnull))
 print (call(['/usr/local/git/bin/git', "push", "-u", "origin", "master"], stdout=devnull, stderr=devnull))
 
-
+print(devnull)
 
 # een aantal bewerkingen
 
