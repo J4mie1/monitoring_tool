@@ -280,7 +280,7 @@ else:
     debuglijst.append("Error: optie 'OS' mag alleen 'W' of 'L' zijn")
 
 from lib.layout import footer
-debuglijst.append("_________________________________________________________________________________________________________________" + "\n")
+debuglijst.append("____________________________________________________________________________________________________________" + "\n")
 
 if logging == 1:
     agent.schrijfNaarLogFile(logfile, debuglijst)
