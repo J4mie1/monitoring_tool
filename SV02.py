@@ -41,7 +41,7 @@ if OS == "W" or OS == "L":
                 </ul>
             </div>
         </div>""")
-        debuglijstje.append("Error: kan niet verbinden naar agent " + host + str(port) + " (code 1)" + "\n")
+        debuglijstje.append("Error: kan niet verbinden naar agent " + host + ":" + str(port) + " (code 1)" + "\n")
 
     elif agent_connect == 2:
         print("""
@@ -50,7 +50,7 @@ if OS == "W" or OS == "L":
                 Error: Host """ + host + """ kon niet worden benaderd, controleer het IP-adres
             </div>
         </div>""")
-        debuglijstje.append("Error: kan niet verbinden naar agent " + host + str(port) + " (code 2)" + "\n")
+        debuglijstje.append("Error: kan niet verbinden naar agent " + host + ":" + str(port) + " (code 2)" + "\n")
 
     else:
         counters = [agent.geefHostname(),           #0
@@ -69,7 +69,7 @@ if OS == "W" or OS == "L":
                     agent.geefUCapacity(),          #13
                     agent.geefUMemory()             #14
                     ]
-        debuglijstje.append("Verbinding gemaakt met agent " + host + str(port) +", counters succesvol opgehaald" + "\n")
+        debuglijstje.append("Verbinding gemaakt met agent " + host + ":" + str(port) +", counters succesvol opgehaald" + "\n")
 
         if OS == "W":
                     counters.append(agent.geefRunningServices())
@@ -77,7 +77,7 @@ if OS == "W" or OS == "L":
                     counters.append(agent.geefTotalServices())
 
         agent.verlaatSessie()
-        debuglijstje.append("Verbinding met agent " + host + str(port) + " weer verbroken" + "\n")
+        debuglijstje.append("Verbinding met agent " + host + ":" + str(port) + " weer verbroken" + "\n")
         host_id = agent.genereerHostID()
 
         if genereer_grafieken == 1 and csv == 1:
@@ -281,5 +281,6 @@ from lib.layout import footer
 
 classes.functions.uploadNaarGitHub(__file__)
 print(debuglijstje)
+debuglijstje.append("_________________________________")
 agent.schrijfNaarLogFile(logfile, debuglijstje)
 
