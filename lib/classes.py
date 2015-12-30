@@ -357,12 +357,10 @@ class Agent:
         for rij in self.conn.execute("SELECT grafiek_id FROM grafieken WHERE datum = '" + str(datum) + "' AND host_id = '" + str(host_id) + "' AND grafieksoort_id = '" + str(grafieksoort_id) + "'"):
             return str(rij[0])
 
-    def openLogFile(self, logfile):
+    def schrijfNaarLogFile(self, logfile, lijst):
         f = open(logfile, "a")
-        self.bestand = f.read()
 
-    #def schrijfNaarLogFile(self):
-
-
+        for i in lijst:
+            f.write(functions.geefDatumEnTijd() + "\t" + i + "\n")
 
 functions.uploadNaarGitHub(__file__)
