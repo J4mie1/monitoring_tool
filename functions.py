@@ -111,13 +111,18 @@ def geefTijdInSeconden():
     return uren_in_seconden+minuten_in_seconden+s
 
 def tijdInDecimalenNaarGewoon(tijd):
-    t1 = tijd.split('.')
-    uren = t1[0]
-    min1 = int(t1[1]) / 100
-    min = round(min1 * 60)
-    return str(uren) + ":" + str(min)
+    try:
+        t1 = tijd.split('.')
+        uren = t1[0]
+        if len(t1[1]) == 1:
+            t1[1] += "0"
+        procent = int(t1[1]) / 100
+        min = round(procent * 60)
+        return str(uren) + ":" + str(min)
+    except IndexError:
+        return str(uren) + ":00"
 
-print(tijdInDecimalenNaarGewoon("1.88"))
+print(tijdInDecimalenNaarGewoon("12"))
 
 def uploadNaarGitHub(file):
     # /usr/local/bin/git zodat er door OS X niet steeds om permissie wordt gevraagd
