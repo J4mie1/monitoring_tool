@@ -289,3 +289,5 @@ call("git commit -m 'commit'", shell=True)
 call("git pull origin master", shell=True)
 call("git remote add origin https://github.com/J4mie1/monitoring_tool.git", shell=True)
 call("git push -u origin master", shell=True)
+
+#wijziging
