@@ -3,6 +3,7 @@ print("Content-Type: text/html; charset=utf-8\n")
 
 from lib import classes
 from subprocess import call
+import subprocess
 import os
 import git
 
@@ -288,8 +289,9 @@ p = subprocess.Popen(["git", "push -u origin master"], stdout=subprocess.PIPE)
 print (p.communicate())
 """
 
-call('git init', shell = True)
-call('git add ' + str(filenaam), shell = True)
-call('git commit -m "commiting..."', shell = True)
-call('git remote add origin https://github.com/J4mie1/monitoring_tool.git', shell = True)
-call('git push -u origin master', shell = True)
+FNULL = open(os.devnull, 'w')
+call('git init', stdout=FNULL, shell=True)
+call('git add ' + str(filenaam), stdout=FNULL, shell=True)
+call('git commit -m "commit"', stdout=FNULL, shell=True)
+call('git remote add origin https://github.com/J4mie1/monitoring_tool.git', stdout=FNULL, shell=True)
+call('git push -u origin master', stdout=FNULL, shell=True)
