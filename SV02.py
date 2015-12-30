@@ -281,6 +281,6 @@ from lib.layout import footer
 
 classes.functions.uploadNaarGitHub(__file__)
 print(debuglijstje)
-debuglijstje.append("____________________________________________________________________________________")
+debuglijstje.append("_________________________________________________________________________________________________" + "\n")
 agent.schrijfNaarLogFile(logfile, debuglijstje)
 
