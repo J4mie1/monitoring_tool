@@ -281,11 +281,11 @@ from lib.layout import footer
 
 filenaam = __file__
 
-devnull = open('/dev/null', 'w')
-subprocess.call(['git', 'init'], stdout=devnull, stderr=devnull)
-subprocess.call("git add " + str(filenaam), stdout=devnull, stderr=devnull, shell=True)
-subprocess.call("git commit -m 'commit'", stdout=devnull, stderr=devnull, shell=True)
-subprocess.call("git pull origin master", stdout=devnull, stderr=devnull, shell=True)
-subprocess.call("git remote add origin https://github.com/J4mie1/monitoring_tool.git", stdout=devnull, stderr=devnull, shell=True)
-subprocess.call("git push -u origin master", stdout=devnull, stderr=devnull, shell=True)
 
+devnull = open('/dev/null', 'w')
+call('git init --exec-path=/usr/local/git/bin/', shell=True)
+call("git add " + str(filenaam), shell=True)
+call("git commit -m 'commit'", shell=True)
+call("git pull origin master", shell=True)
+call("git remote add origin https://github.com/J4mie1/monitoring_tool.git", shell=True)
+call("git push -u origin master", shell=True)
