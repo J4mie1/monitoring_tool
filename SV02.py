@@ -31,7 +31,7 @@ from lib.layout import menu2
 
 agent_connect = agent.verbindingOpzetten()
 if OS == "W" or OS == "L":
-    
+
     if agent_connect == 1:
         print("""
         <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
@@ -67,7 +67,7 @@ if OS == "W" or OS == "L":
                     agent.geefTCapacity(),          #12
                     agent.geefUCapacity(),          #13
                     agent.geefUMemory()             #14
-                    ]    
+                    ]
 
         if OS == "W":
                     counters.append(agent.geefRunningServices())
@@ -288,15 +288,16 @@ print (p.communicate())
 p = subprocess.Popen(["git", "push -u origin master"], stdout=subprocess.PIPE)
 print (p.communicate())
 """
+print("sfsdfsf")
 
 FNULL = open(os.devnull, 'w')
 subprocess.call('git init', stdout=FNULL, shell=True)
 subprocess.call('git add ' + str(filenaam), stdout=FNULL, shell=True)
 subprocess.call('git commit -m "commit"', stdout=FNULL, shell=True)
-try:
-    subprocess.call('git remote add origin https://github.com/J4mie1/monitoring_tool.git', stdout=FNULL, shell=True)
-except OSError:
-    print("oei fataal")
+subprocess.call('git remote add github https://github.com/J4mie1/monitoring_tool.git', stdout=FNULL, shell=True)
 subprocess.call('git push -u origin master', stdout=FNULL, shell=True)
 
-#ik doe een bewerking
+
+#ik doe een bewerkingfdgdfg
+
+print("ssfsfsf")
