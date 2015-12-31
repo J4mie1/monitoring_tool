@@ -18,6 +18,9 @@ for k,v in values.items():
     print(v)
     print(type(v))
 
+for k in values["algemeen"]:
+    print(k)
+
 debuglijst = []
 debuglijst.append(__file__ + " gestart...")
 
