@@ -6,15 +6,21 @@ from lib import classes
 import xmltodict
 
 def leesXMLUit(xml, access_mode, root_element):
-    global commands_dict
+    global values
     f = open(xml, access_mode) # open xml file met client commands en PowerShell commands
     bestand = f.read()
     commands_dict = xmltodict.parse(bestand)
+    values = commands_dict[root_element]
 
 leesXMLUit("config.xml", "r", "monitoringtool")
 
 
-print(commands_dict)
+
+
+
+
+for k,v in values.items():
+    print(v)
 
 debuglijst = []
 debuglijst.append(__file__ + " gestart...")
