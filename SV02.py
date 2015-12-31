@@ -6,7 +6,7 @@ from lib import classes
 config = classes.functions.leesXMLConfig("config.xml", "r", "SV02")
 
 debuglijst = []
-debuglijst.append(__file__ + " gestart...")
+debuglijst.append(classes.functions.geefDatumEnTijd() + "\t" + __file__ + " gestart...")
 
 agent = classes.Agent(config[1]["host"], config[1]["port"], config[1]["ww"], config[1]["OS"], classes.functions.geefDatum(),
                       config[0]["locatie"], config[0]["locatie_grafieken"], config[0]["database_file"])
@@ -31,7 +31,7 @@ if config[1]["OS"] == "W" or config[1]["OS"] == "L":
                 </ul>
             </div>
         </div>""")
-        debuglijst.append("Error: kan niet verbinden naar agent " + config[1]["host"] + ":" + config[1]["port"] + " (code 1)")
+        debuglijst.append(classes.functions.geefDatumEnTijd() + "\t" + "Error: kan niet verbinden naar agent " + config[1]["host"] + ":" + config[1]["port"] + " (code 1)")
 
     elif agent_connect == 2:
         print("""
@@ -40,7 +40,7 @@ if config[1]["OS"] == "W" or config[1]["OS"] == "L":
                 Error: Host """ + config[1]["host"] + """ kon niet worden benaderd, controleer het IP-adres
             </div>
         </div>""")
-        debuglijst.append("Error: kan niet verbinden naar agent " + config[1]["host"] + ":" + config[1]["port"] + " (code 2)")
+        debuglijst.append(classes.functions.geefDatumEnTijd() + "\t" + "Error: kan niet verbinden naar agent " + config[1]["host"] + ":" + config[1]["port"] + " (code 2)")
 
     else:
         counters = [agent.geefHostname(),           #0
@@ -59,7 +59,7 @@ if config[1]["OS"] == "W" or config[1]["OS"] == "L":
                     agent.geefUCapacity(),          #13
                     agent.geefUMemory()             #14
                     ]
-        debuglijst.append("Verbinding gemaakt met agent " + config[1]["host"] + ":" + config[1]["port"] +", counters succesvol opgehaald")
+        debuglijst.append(classes.functions.geefDatumEnTijd() + "\t" + "Verbinding gemaakt met agent " + config[1]["host"] + ":" + config[1]["port"] +", counters succesvol opgehaald")
 
         if config[1]["OS"] == "W":
                     counters.append(agent.geefRunningServices())
@@ -67,7 +67,7 @@ if config[1]["OS"] == "W" or config[1]["OS"] == "L":
                     counters.append(agent.geefTotalServices())
 
         agent.verlaatSessie()
-        debuglijst.append("Verbinding met agent " + config[1]["host"] + ":" + config[1]["port"] + " weer verbroken")
+        debuglijst.append(classes.functions.geefDatumEnTijd() + "\t" + "Verbinding met agent " + config[1]["host"] + ":" + config[1]["port"] + " weer verbroken")
         host_id = agent.genereerHostID()
 
         if int(config[1]["genereer_grafieken"]) == 1 and int(config[1]["voegtoe_aan_csv"]) == 1:
@@ -78,19 +78,19 @@ if config[1]["OS"] == "W" or config[1]["OS"] == "L":
                             agent.genereerGrafiek(3, counters[14], classes.functions.geefTijdInDecimalen()),
                             agent.bewaarInCsv(config[0]["csv_file"])
                             ]
-            debuglijst.append("Grafieken gegenereerd")
-            debuglijst.append("Processorbelasting, datagebruik en geheugengebruik counters toegevoegd aan " + config[0]["csv_file"])
+            debuglijst.append(classes.functions.geefDatumEnTijd() + "\t" + "Grafieken gegenereerd")
+            debuglijst.append(classes.functions.geefDatumEnTijd() + "\t" + "Processorbelasting, datagebruik en geheugengebruik counters toegevoegd aan " + config[0]["csv_file"])
 
         elif int(config[1]["genereer_grafieken"]) == 1 and int(config[1]["voegtoe_aan_csv"]) == 0:
             grafieken = [   agent.genereerGrafiek(1, counters[5][1], classes.functions.geefTijdInDecimalen()),
                             agent.genereerGrafiek(2, counters[13], classes.functions.geefTijdInDecimalen()),
                             agent.genereerGrafiek(3, counters[14], classes.functions.geefTijdInDecimalen())
                             ]
-            debuglijst.append("Grafieken gegenereerd")
+            debuglijst.append(classes.functions.geefDatumEnTijd() + "\t" + "Grafieken gegenereerd")
 
         elif int(config[1]["genereer_grafieken"]) == 0 and int(config[1]["voegtoe_aan_csv"]) == 1:
             agent.bewaarAlleenInCsv(counters[5][1], counters[13], counters[14], str(classes.functions.geefTijdInDecimalen(), config[0]["csv_file"]))
-            debuglijst.append("Processorbelasting, datagebruik en geheugengebruik counters toegevoegd aan " + config[0]["csv_file"])
+            debuglijst.append(classes.functions.geefDatumEnTijd() + "\t" + "Processorbelasting, datagebruik en geheugengebruik counters toegevoegd aan " + config[0]["csv_file"])
 
         print("""
             <div class="row small">
@@ -263,10 +263,10 @@ else:
             <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
                 <div class="alert alert-danger">Error: Optie "OS" mag alleen "W" of "L" bevatten</div>
             </div>""")
-    debuglijst.append("Error: optie 'OS' mag alleen 'W' of 'L' zijn")
+    debuglijst.append(classes.functions.geefDatumEnTijd() + "\t" + "Error: optie 'OS' mag alleen 'W' of 'L' zijn")
 
 from lib.layout import footer
-debuglijst.append("Script voltooid")
+debuglijst.append(classes.functions.geefDatumEnTijd() + "\t" + "Script voltooid")
 debuglijst.append("____________________________________________________________________________________________________________")
 
 if int(config[1]["genereer_logging"]) == 1:
