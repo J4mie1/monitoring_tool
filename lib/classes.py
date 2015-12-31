@@ -360,7 +360,7 @@ class Agent:
 
         for i in lijst:
             if i == lijst[-1]:
-                f.write(i)
+                f.write(i + "\n")
             else:
                 f.write(functions.geefDatumEnTijd() + "\t" + i + "\n")
 
