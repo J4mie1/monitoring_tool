@@ -5,28 +5,11 @@ from lib import classes
 
 config = classes.functions.leesXMLConfig("config.xml", "r", "SV02")
 
-
-
 debuglijst = []
 debuglijst.append(__file__ + " gestart...")
 
-"""
-# settings
-host                = '192.168.34.184'
-port                = "8888"
-ww                  = "jamie"
-OS                  = "L"   # kies W of L
-genereer_grafieken  = 1
-voegtoe_aan_csv     = 1
-locatie             = "/Applications/XAMPP/xamppfiles/htdocs/monitoringtool/"
-locatie_grafieken   = "grafieken/" # met slash
-csv_file        = "metingen.csv"
-database_file   = "lib/monitoringtool.sqlite"
-logfile             = "log/SV02.txt"
-genereer_logging    = 1
-"""
-
-agent = classes.Agent(config[1]["host"], config[1]["port"], config[1]["ww"], config[1]["OS"], classes.functions.geefDatum(), config[0]["locatie"], config[0]["locatie_grafieken"], config[0]["database_file"])
+agent = classes.Agent(config[1]["host"], config[1]["port"], config[1]["ww"], config[1]["OS"], classes.functions.geefDatum(),
+                      config[0]["locatie"], config[0]["locatie_grafieken"], config[0]["database_file"])
 
 from lib.layout import head
 from lib.layout import menu1
@@ -283,7 +266,8 @@ else:
     debuglijst.append("Error: optie 'OS' mag alleen 'W' of 'L' zijn")
 
 from lib.layout import footer
-debuglijst.append("____________________________________________________________________________________________________________" + "\n")
+debuglijst.append("Script voltooid")
+debuglijst.append("____________________________________________________________________________________________________________")
 
 if int(config[1]["genereer_logging"]) == 1:
     agent.schrijfNaarLogFile(config[1]["logfile"], debuglijst)
