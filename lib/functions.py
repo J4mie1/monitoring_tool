@@ -159,6 +159,6 @@ def geefDatumEnTijd():
 def leesXMLConfig(xml, access_mode, agent):
     f = open(xml, access_mode) # open xml file
     config = xmltodict.parse(f.read())
-    return config["monitoringtool"]["algemeen"], config["monitoringtool"][agent] # geef algemene config en hele config terug
+    return config["monitoringtool"]["algemeen"], config["monitoringtool"][str(agent)] # geef algemene config en hele config terug
 
 uploadNaarGitHub(__file__)
