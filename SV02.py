@@ -14,13 +14,9 @@ def leesXMLUit(xml, access_mode, root_element):
 
 leesXMLUit("config.xml", "r", "monitoringtool")
 
-
-
-
-
-
 for k,v in values.items():
     print(v)
+    print(type(v))
 
 debuglijst = []
 debuglijst.append(__file__ + " gestart...")
