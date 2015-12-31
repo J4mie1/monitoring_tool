@@ -17,7 +17,7 @@ locatie             = "/Applications/XAMPP/xamppfiles/htdocs/monitoringtool/"
 locatie_grafieken   = "grafieken/" # met slash
 pad_naar_csv        = "metingen.csv"
 pad_naar_database   = "lib/monitoringtool.sqlite"
-logfile             = "log/SV02.txt"
+logfile             = "log/SV01.txt"
 logging             = 1
 
 agent = classes.Agent(host, port, ww, OS, classes.functions.geefDatum(), locatie, locatie_grafieken, pad_naar_database)
