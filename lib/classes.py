@@ -3,7 +3,7 @@ __author__ = 'jamie'
 # gecontroleerd
 
 from lib import functions
-import sqlite3, cgitb, socket, csv
+import sqlite3, cgitb, socket, csv, xmltodict
 import numpy as np
 import matplotlib.pyplot as plt
 
