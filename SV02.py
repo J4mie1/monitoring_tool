@@ -7,7 +7,7 @@ debuglijst = []
 debuglijst.append(__file__ + " gestart...")
 
 # settings
-host                = '192.168.34.183'
+host                = '192.168.34.184'
 port                = "8888"
 ww                  = "jamie"
 OS                  = "L"   # kies W of L
