@@ -2,7 +2,7 @@ __author__ = 'jamie'
 
 #gecontroleerd
 
-import socket
+import socket, xmltodict
 from datetime import datetime
 from subprocess import Popen, PIPE
 
