@@ -156,4 +156,9 @@ def uploadNaarGitHub(file):
 def geefDatumEnTijd():
     return str(datetime.now())[0:19]
 
+def leesXMLUit(xml, access_mode, root_element):
+    f = open(xml, access_mode) # open xml file
+    config = xmltodict.parse(f.read())
+    return config[root_element]["algemeen"], config[root_element] # geef algemene config en hele config terug
+
 uploadNaarGitHub(__file__)
