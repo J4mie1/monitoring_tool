@@ -3,6 +3,19 @@ print("Content-Type: text/html; charset=utf-8\n")
 
 from lib import classes
 
+import xmltodict
+
+def leesXMLUit(xml, access_mode, root_element):
+    global commands_dict
+    f = open(xml, access_mode) # open xml file met client commands en PowerShell commands
+    bestand = f.read()
+    commands_dict = xmltodict.parse(bestand)
+
+leesXMLUit("config.xml", "r", "monitoringtool")
+
+
+print(commands_dict)
+
 debuglijst = []
 debuglijst.append(__file__ + " gestart...")
 
@@ -12,15 +25,15 @@ port                = "8888"
 ww                  = "jamie"
 OS                  = "L"   # kies W of L
 genereer_grafieken  = 1
-csv                 = 1
+voegtoe_aan_csv     = 1
 locatie             = "/Applications/XAMPP/xamppfiles/htdocs/monitoringtool/"
 locatie_grafieken   = "grafieken/" # met slash
-pad_naar_csv        = "metingen.csv"
-pad_naar_database   = "lib/monitoringtool.sqlite"
+csv_file        = "metingen.csv"
+database_file   = "lib/monitoringtool.sqlite"
 logfile             = "log/SV02.txt"
-logging             = 1
+genereer_logging    = 1
 
-agent = classes.Agent(host, port, ww, OS, classes.functions.geefDatum(), locatie, locatie_grafieken, pad_naar_database)
+agent = classes.Agent(host, port, ww, OS, classes.functions.geefDatum(), locatie, locatie_grafieken, database_file)
 
 from lib.layout import head
 from lib.layout import menu1
@@ -81,27 +94,27 @@ if OS == "W" or OS == "L":
         debuglijst.append("Verbinding met agent " + host + ":" + str(port) + " weer verbroken")
         host_id = agent.genereerHostID()
 
-        if genereer_grafieken == 1 and csv == 1:
+        if genereer_grafieken == 1 and voegtoe_aan_csv == 1:
             grafieken = [   agent.genereerGrafiek(1, counters[5][1], classes.functions.geefTijdInDecimalen()),
-                            agent.bewaarInCsv(pad_naar_csv),
+                            agent.bewaarInCsv(csv_file),
                             agent.genereerGrafiek(2, counters[13], classes.functions.geefTijdInDecimalen()),
-                            agent.bewaarInCsv(pad_naar_csv),
+                            agent.bewaarInCsv(csv_file),
                             agent.genereerGrafiek(3, counters[14], classes.functions.geefTijdInDecimalen()),
-                            agent.bewaarInCsv(pad_naar_csv)
+                            agent.bewaarInCsv(csv_file)
                             ]
             debuglijst.append("Grafieken gegenereerd")
-            debuglijst.append("Processorbelasting, datagebruik en geheugengebruik counters toegevoegd aan " + pad_naar_csv)
+            debuglijst.append("Processorbelasting, datagebruik en geheugengebruik counters toegevoegd aan " + csv_file)
 
-        elif genereer_grafieken == 1 and csv == 0:
+        elif genereer_grafieken == 1 and voegtoe_aan_csv == 0:
             grafieken = [   agent.genereerGrafiek(1, counters[5][1], classes.functions.geefTijdInDecimalen()),
                             agent.genereerGrafiek(2, counters[13], classes.functions.geefTijdInDecimalen()),
                             agent.genereerGrafiek(3, counters[14], classes.functions.geefTijdInDecimalen())
                             ]
             debuglijst.append("Grafieken gegenereerd")
 
-        elif genereer_grafieken == 0 and csv == 1:
-            agent.bewaarAlleenInCsv(counters[5][1], counters[13], counters[14], str(classes.functions.geefTijdInDecimalen(), pad_naar_csv))
-            debuglijst.append("Processorbelasting, datagebruik en geheugengebruik counters toegevoegd aan " + pad_naar_csv)
+        elif genereer_grafieken == 0 and voegtoe_aan_csv == 1:
+            agent.bewaarAlleenInCsv(counters[5][1], counters[13], counters[14], str(classes.functions.geefTijdInDecimalen(), csv_file))
+            debuglijst.append("Processorbelasting, datagebruik en geheugengebruik counters toegevoegd aan " + csv_file)
 
         print("""
             <div class="row small">
@@ -279,7 +292,7 @@ else:
 from lib.layout import footer
 debuglijst.append("____________________________________________________________________________________________________________" + "\n")
 
-if logging == 1:
+if genereer_logging == 1:
     agent.schrijfNaarLogFile(logfile, debuglijst)
 
 classes.functions.uploadNaarGitHub(__file__)
