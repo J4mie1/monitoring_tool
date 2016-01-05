@@ -3,19 +3,18 @@ print("Content-Type: text/html; charset=utf-8\n")
 
 from lib import classes
 
-config = classes.functions.leesXMLConfig("config.xml", "r", "SV02")
+config = classes.functions.leesXMLConfig("config.xml", "r", "SV01")
 
 debuglijst = []
 debuglijst.append(classes.functions.geefDatumEnTijd() + "\t" + __file__ + " gestart...")
 
-agent = classes.Agent(config[1]["host"], config[1]["port"], config[1]["ww"], config[1]["OS"], classes.functions.geefDatum(),
-                      config[0]["locatie"], config[0]["locatie_grafieken"], config[0]["database_file"])
+agent = classes.Agent(config[1]["host"], config[1]["port"], config[1]["ww"], config[1]["OS"], classes.functions.geefDatum(), config[0]["locatie"], config[0]["locatie_grafieken"], config[0]["database_file"])
 
 from lib.layout import head
 from lib.layout import menu1
 print("""
-                    <li><a href="index.py">SV01</a></li>
-                    <li class="active"><a href="#">SV02</a></li>""")
+                    <li class="active"><a href="#">SV01</a></li>
+                    <li><a href="SV02.py">SV02</a></li>""")
 from lib.layout import menu2
 
 agent_connect = agent.verbindingOpzetten()
@@ -62,9 +61,9 @@ if config[1]["OS"] == "W" or config[1]["OS"] == "L":
         debuglijst.append(classes.functions.geefDatumEnTijd() + "\t" + "Verbinding gemaakt met agent " + config[1]["host"] + ":" + config[1]["port"] +", counters succesvol opgehaald")
 
         if config[1]["OS"] == "W":
-                    counters.append(agent.geefRunningServices())
-                    counters.append(agent.geefStoppedServices())
-                    counters.append(agent.geefTotalServices())
+                    counters.append(agent.geefRunningServices()) #15
+                    counters.append(agent.geefStoppedServices()) #16
+                    counters.append(agent.geefTotalServices()) #17
 
         agent.verlaatSessie()
         debuglijst.append(classes.functions.geefDatumEnTijd() + "\t" + "Verbinding met agent " + config[1]["host"] + ":" + config[1]["port"] + " weer verbroken")
@@ -177,15 +176,15 @@ if config[1]["OS"] == "W" or config[1]["OS"] == "L":
                                 </tr>
                                 <tr>
                                     <td>Aantal draaiende services:</td>
-                                    <td>""" + counters[13] + """</td>
+                                    <td>""" + counters[15] + """</td>
                                 </tr>
                                 <tr>
                                     <td>Aantal gestopte services:</td>
-                                    <td>""" + counters[14] + """</td>
+                                    <td>""" + counters[16] + """</td>
                                 </tr>
                                 <tr>
                                     <td>Totaal aantal services:</td>
-                                    <td>""" + counters[15] + """</td>
+                                    <td>""" + counters[17] + """</td>
                                 </tr>""")
 
         print("""
