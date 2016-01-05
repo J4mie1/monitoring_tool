@@ -2,7 +2,7 @@ __author__ = 'jamie'
 
 #gecontroleerd
 
-import socket
+import socket, xmltodict
 from datetime import datetime
 from subprocess import Popen, PIPE
 
@@ -122,8 +122,6 @@ def tijdInDecimalenNaarGewoon(tijd):
     except IndexError:
         return str(uren) + ":00"
 
-print(tijdInDecimalenNaarGewoon("11.89"))
-
 def uploadNaarGitHub(file):
     # /usr/local/bin/git zodat er door OS X niet steeds om permissie wordt gevraagd
     debug = 0
@@ -157,5 +155,10 @@ def uploadNaarGitHub(file):
 
 def geefDatumEnTijd():
     return str(datetime.now())[0:19]
+
+def leesXMLConfig(xml, access_mode, agent):
+    f = open(xml, access_mode) # open xml file
+    config = xmltodict.parse(f.read())
+    return config["monitoringtool"]["algemeen"], config["monitoringtool"]["agents"][agent] # geef algemene config en hele config terug
 
 uploadNaarGitHub(__file__)
