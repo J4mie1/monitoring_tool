@@ -20,7 +20,7 @@ class Agent:
         self.datum              = datum
         self.locatie            = locatie
         self.locatie_grafieken  = locatie_grafieken
-        self.conn = sqlite3.connect(conn)
+        self.conn               = sqlite3.connect(conn)
 
         # client commands
         self.hostname           = "hostname"
@@ -45,7 +45,7 @@ class Agent:
 
     def verbindingOpzetten(self):
         try:
-            functions.s.connect((self.host, self.port))
+            functions.s.connect((self.host, int(self.port)))
             functions.ontvangData() # ontvang bericht "voer wachtwoord in"
 
         # indien 't agent script niet draait of de poort niet klopt
@@ -337,18 +337,16 @@ class Agent:
             for rij in self.conn.execute("SELECT datum, grafieksoort_id FROM grafieken WHERE host_id = '" + str(self.host_id) + "' ORDER BY datum DESC"):
                 datum_tekst = functions.datumNaarTekst(str(rij[0]))
                 if rij[1] == i:
+                    prefix = self.locatie_grafieken + self.hostname + "_" + str(rij[0])
                     if i == 1:
-                        path = self.locatie_grafieken + self.hostname + "_" + str(rij[0]) + "_processorbelasting.png"
-                        value = (datum_tekst, path)
-                        grafiek_items.append(value)
+                        path = prefix + "_processorbelasting.png"
+                        grafiek_items.append((datum_tekst, path))
                     elif i == 2:
-                        path = self.locatie_grafieken + self.hostname + "_" + str(rij[0]) + "_datagebruik.png"
-                        value = (datum_tekst, path)
-                        grafiek_items2.append(value)
+                        path = prefix + "_datagebruik.png"
+                        grafiek_items2.append((datum_tekst, path))
                     elif i == 3:
-                        path = self.locatie_grafieken + self.hostname + "_" + str(rij[0]) + "_geheugengebruik.png"
-                        value = (datum_tekst, path)
-                        grafiek_items3.append(value)
+                        path = prefix + "_geheugengebruik.png"
+                        grafiek_items3.append((datum_tekst, path))
 
         return grafiek_items, grafiek_items2, grafiek_items3
 
@@ -357,6 +355,9 @@ class Agent:
         for rij in self.conn.execute("SELECT grafiek_id FROM grafieken WHERE datum = '" + str(datum) + "' AND host_id = '" + str(host_id) + "' AND grafieksoort_id = '" + str(grafieksoort_id) + "'"):
             return str(rij[0])
 
+    def schrijfNaarLogFile(self, logfile, lijst):
+        f = open(logfile, "a")
+        for i in lijst:
+            f.write(i + "\n")
+
 functions.uploadNaarGitHub(__file__)
-
-
