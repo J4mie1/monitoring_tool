@@ -4,10 +4,9 @@ __author__ = 'jamie'
 
 from lib import functions
 import sqlite3, cgitb, socket, csv
+cgitb.enable()
 import numpy as np
 import matplotlib.pyplot as plt
-
-cgitb.enable()
 
 class Agent:
 
