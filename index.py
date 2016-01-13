@@ -272,3 +272,5 @@ if int(config[1]["genereer_logging"]) == 1:
     agent.schrijfNaarLogFile(config[1]["logfile"], debuglijst)
 
 classes.functions.uploadNaarGitHub(__file__)
+
+#sfsdfsdf
