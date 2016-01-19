@@ -360,3 +360,6 @@ class Agent:
             f.write(i + "\n")
 
 functions.uploadNaarGitHub(__file__)
+
+
+#wijziging    19 januari nu
