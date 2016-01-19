@@ -273,4 +273,4 @@ if int(config[1]["genereer_logging"]) == 1:
 
 classes.functions.uploadNaarGitHub(__file__)
 
-#sfsdfsdf
+#test 19 januari
